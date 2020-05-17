@@ -50,7 +50,7 @@ export default class OverflowDetector extends Component {
       }
 
       clearTimeout(timer);
-    }, 150)
+    }, that.props.timeout || 0)
   }
 
   render() {
