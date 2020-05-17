@@ -35,16 +35,20 @@ export default class OverflowDetector extends Component {
   }
 
   checkOverflow() {
-    const isOverflowed =
-      this.domElement.scrollWidth > this.domElement.clientWidth ||
-      this.domElement.scrollHeight > this.domElement.clientHeight;
+    const that = this
 
-    if (isOverflowed !== this.isOverflowed) {
-      this.isOverflowed = isOverflowed;
-      if (this.props.onOverflowChange) {
-        this.props.onOverflowChange(isOverflowed);
+    setTimeout(() => {
+      const isOverflowed =
+        that.domElement.scrollWidth > that.domElement.clientWidth ||
+        that.domElement.scrollHeight > that.domElement.clientHeight;
+
+      if (isOverflowed !== that.isOverflowed) {
+        that.isOverflowed = isOverflowed;
+        if (that.props.onOverflowChange) {
+          that.props.onOverflowChange(isOverflowed);
+        }
       }
-    }
+    }, 0)
   }
 
   render() {
