@@ -37,7 +37,7 @@ export default class OverflowDetector extends Component {
   checkOverflow() {
     const that = this
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       const isOverflowed =
         that.domElement.scrollWidth > that.domElement.clientWidth ||
         that.domElement.scrollHeight > that.domElement.clientHeight;
@@ -48,11 +48,14 @@ export default class OverflowDetector extends Component {
           that.props.onOverflowChange(isOverflowed);
         }
       }
-    }, 0)
+
+      clearTimeout(timer);
+    }, 150)
   }
 
   render() {
     const { style, className, children } = this.props;
+
     return (
       <div
         ref={this.setDOMElement}
